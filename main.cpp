@@ -8,5 +8,3 @@ int main() {
    a.ChooseCalculator();
    return 0;
 }
-
-

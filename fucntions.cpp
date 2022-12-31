@@ -524,7 +524,13 @@ void ConsoleWork::ProgrammerFuctions()
               "Sum: a + b" << std::endl <<
               "Residual: a-b;" << std::endl <<
               "Multiply: a*b;" << std::endl <<
-              "Division: a/b;" << std::endl;
+              "Division: a/b;" << std::endl <<
+              "and a AND b" << std::endl <<
+              "not NOT a" << std::endl <<
+              "or a OR b" << std::endl <<
+              "nand a NAND b" << std::endl <<
+              "nor a NOR b" << std::endl <<
+              "xor a XOR b" << std::endl;
     std::cout << "Input notation" << std::endl;
     int n;
     std::cin >> n;
@@ -589,24 +595,116 @@ void ProgrammerCalculator::Notation()
             //return this->Calculate;
         case (10):
             return this->CalculateDecimal();
-        //case (16):
-             //return this->CalculateHex;
+        case (16):;
+            //return this->CalculateHex;
     }
+}
+
+std::string DecimalToBinary(std::string _Number){
+    double number = stod(_Number);
+    std::vector<int> wholeNumbers;
+    std::vector<int> fractionalNumbers;
+    int wholePart = number;
+    int counter = 0;
+    while (wholePart > 0){
+        int temp;
+        temp = wholePart % 2;
+        wholePart /= 2;
+        wholeNumbers.push_back(temp);
+        counter++;
+    }
+    std::string newNumber = "";
+    for(int i = counter - 1;i > 0;i--){
+        newNumber += std::to_string(wholeNumbers[i]);
+    }
+    _Number = newNumber;
+    return _Number;
 }
 
 
 
-void ProgrammerCalculator::CalculateDecimal(){
-    while(true){
-       std::cout << "Input number" << std::endl;
-       std::cin >> this->firstnumber;
-       std::cout << "Input operation" << std::endl;
-       std::cin >> this->operation;
-       switch(operation){
-           case ('+'):
-               std::cout << "Input second number" << std::endl;
-               std::cin >> this->secondnumber;
+std::string BinaryToOct(std::string _Number){
+    std::string number = DecimalToBinary(_Number);
 
-       }
+};
+
+
+
+void ProgrammerCalculator::CalculateDecimal()
+{
+    double res;
+    this->firstnumber = "0";
+    while (true) {
+        if(this->firstnumber == "0") {
+            std::cout << "Input number" << std::endl;
+            std::cin >> this->firstnumber;
+            std::cout << "Input operation" << std::endl;
+            std::cin >> this->operation;
+            switch (operation) {
+                case ('+'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->firstnumber) + std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('-'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->firstnumber) - std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('*'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->firstnumber) * std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('/'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->firstnumber) / std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                //case ('AND'):
+
+            }
+        }else{
+            std::cout << "Input operation" << std::endl;
+            std::cin >> this->operation;
+            switch(this->operation) {
+                case ('+'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->result) + std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('-'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->result) - std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('*'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->result) * std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+                case ('/'):
+                    std::cout << "Input second number" << std::endl;
+                    std::cin >> this->secondnumber;
+                    res = std::stod(this->result) / std::stod(this->secondnumber);
+                    this->result = std::to_string(res);
+                    std::cout << this->result << std::endl;
+                    break;
+            }
+        }
     }
 }
