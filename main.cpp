@@ -6,5 +6,6 @@ int main() {
    ConsoleWork a;
    a.Hello();
    a.ChooseCalculator();
+   std::cout << "hello world";
    return 0;
 }
